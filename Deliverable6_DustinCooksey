@@ -1,0 +1,68 @@
+# 1 March 2023
+# Assignment 6
+# Dustin Cooksey
+# This project takes in the iris data frame
+# and then munipulates the data frame in
+# a variety of different ways
+
+
+import pandas as pd
+import numpy as np
+import seaborn as sns
+
+iris = sns.load_dataset('iris')
+print(iris.head(10))
+
+iris = iris.drop(labels = 'species', axis = 1)
+
+print(iris.head(10))
+
+iris['sepal_sum'] = iris['sepal_width'] + iris['sepal_length']
+
+iris['petal_sum'] = iris['petal_width'] + iris['petal_length']
+
+print(iris.head(10))
+
+mean = [np.mean(iris['sepal_length']),
+        np.mean(iris['sepal_width']),
+        np.mean(iris['sepal_sum']),
+        np.mean(iris['petal_length']),
+        np.mean(iris['petal_width']),
+        np.mean(iris['petal_sum'])]
+
+std = [np.std(iris['sepal_length']),
+        np.std(iris['sepal_width']),
+        np.std(iris['sepal_sum']),
+        np.std(iris['petal_length']),
+        np.std(iris['petal_width']),
+        np.std(iris['petal_sum'])]
+
+min_value = [np.min(iris['sepal_length']),
+        np.min(iris['sepal_width']),
+        np.min(iris['sepal_sum']),
+        np.min(iris['petal_length']),
+        np.min(iris['petal_width']),
+        np.min(iris['petal_sum'])]
+
+max_value = [np.max(iris['sepal_length']),
+        np.max(iris['sepal_width']),
+        np.max(iris['sepal_sum']),
+        np.max(iris['petal_length']),
+        np.max(iris['petal_width']),
+        np.max(iris['petal_sum'])]
+
+print(iris.mean())
+
+index_names= ['sepal_length',  'sepal_width', 'sepal_sum',
+               'petal_length', 'petal_width', 'petal_sum']
+
+column_names = ['mean', 'std', 'min', 'max']
+
+summary = pd.DataFrame(index=index_names)
+
+summary['mean'] = mean
+summary['std'] = std
+summary['min'] = min_value
+summary['max'] = max_value
+
+print(summary.head(10))
